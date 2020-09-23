@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container, Form, Input, Button } from './styles'
 
-const Login: React.FC = () => {
+const SignIn: React.FC = () => {
   return (
     <Container>
       <Form>
@@ -20,4 +20,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default Login
+export default SignIn
