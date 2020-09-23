@@ -1,12 +1,16 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+
+import GlobalStyle from './styles/global'
+
+import Login from './pages/Login'
 
 function App() {
   return (
-    <h1 className="App">
-      Hello world
-    </h1>
-  );
+    <>
+      <Login />
+      <GlobalStyle />
+    </>
+  )
 }
 
-export default App;
+export default App
