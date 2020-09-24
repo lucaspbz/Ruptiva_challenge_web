@@ -1,17 +1,19 @@
 import React from 'react'
 
+import { BrowserRouter } from 'react-router-dom'
 import GlobalStyle from './styles/global'
 
-import Dashboard from './pages/Dashboard'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
+import Routes from './routes'
+import { AuthProvider } from './hooks/Auth'
 
 function App() {
   return (
-    <>
-      <Dashboard />
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
       <GlobalStyle />
-    </>
+    </BrowserRouter>
   )
 }
 

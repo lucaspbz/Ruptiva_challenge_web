@@ -1,4 +1,7 @@
 import styled from 'styled-components'
+import { Form as Unform } from '@unform/web'
+
+import { Link as ReactLink } from 'react-router-dom'
 
 export const Container = styled.div`
   height: 100vh;
@@ -7,7 +10,7 @@ export const Container = styled.div`
   justify-content: center;
 `
 
-export const Form = styled.form`
+export const Form = styled(Unform)`
   background-color: #fff;
   padding: 24px;
   max-width: 500px;
@@ -43,4 +46,9 @@ export const Button = styled.button`
   border-radius: 4px;
   font-weight: 500;
   margin: 32px auto;
+`
+
+export const Link = styled(ReactLink)`
+  text-decoration: none;
+  color: #1f99ea;
 `

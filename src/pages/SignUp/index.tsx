@@ -8,11 +8,11 @@ const SignUp: React.FC = () => {
       <Form>
         <h3>Create your account</h3>
 
-        <Input placeholder='Email' />
+        <Input placeholder='Email' autoFocus inputMode='email' />
 
-        <Input placeholder='Password' />
+        <Input placeholder='Password' type='password' />
 
-        <Input placeholder='Confirm password' />
+        <Input placeholder='Confirm password' type='password' />
 
         <Button type='submit'>SUBMIT</Button>
       </Form>
