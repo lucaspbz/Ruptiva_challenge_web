@@ -1,3 +1,30 @@
+### Descrição:
+
+Aplicação web desenvolvida com CRA para desafio de processo seletivo.
+Utilizei Typescript e Styled Components, consumindo dados da API do github e da api desenvolvida também nesse processo. Repositorio da api está [aqui](https://github.com/lucaspbz/Ruptiva_challenge_server/blob/master/README.md).
+
+Ao entrar pela primeira vez na aplicação, o usuário cai numa página de login para inserir email e senha. Caso não possua, o usuário pode ir para uma página de criação de conta, onde ele digita um email, senha e confirmação da senha. Ao criar uma conta o usuário é direcionado automaticamente para o dashboard.
+
+No dashboard o usuário pode digitar no campo de busca um repositório no github seguindo o padrão "donoDoRepositório/nomeDoRepositório". Exemplo: facebook/react.
+Ao clicar em pesquisar o usuário cria um card e salva o repositório no seu banco de dados.
+
+Ao clicar no ícone de seta do card vai ser aberto um modal com os detalhes do repositório escolhido e informações sobre as 5 últimas Issues em aberto.
+
+Ao clicar no botão de lixeira o usuário deleta o repositório do banco de dados e remove da lista.
+
+O usuário pode fazer logout da aplicação tocando no ícone de sair localizado no topo direito da tela.
+
+
+### Instruções para instalação:
+
+Faça o clone do repositório com esse [link](https://github.com/lucaspbz/Ruptiva_challenge_web.git)
+
+Abra seu terminal na pasta raiz do projeto e rode o comando "yarn" ou "npm install" para instalar as dependências.
+
+Rode o comando "yarn start" ou "npm run start" para iniciar o servidor.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
