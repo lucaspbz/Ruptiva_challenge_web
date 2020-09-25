@@ -1,10 +1,11 @@
 import React, { useCallback, useRef } from 'react'
 import { FormHandles } from '@unform/core'
-import { useHistory } from 'react-router-dom'
+import * as Yup from 'yup'
 
 import { useAuth } from '../../hooks/Auth'
 import { Container, Form, Button, Link } from './styles'
 import Input from '../../components/Input'
+import getValidationErrors from '../../utils/getValidationErrors'
 
 interface ISignInFormData {
   email: string
@@ -14,17 +15,31 @@ interface ISignInFormData {
 const SignIn: React.FC = () => {
   const { signIn } = useAuth()
   const formRef = useRef<FormHandles>(null)
-  const history = useHistory()
 
   const handleFormSubmit = useCallback(
-    async ({ email, password }: ISignInFormData) => {
+    async (userData: ISignInFormData) => {
       try {
-        await signIn({ email, password })
+        formRef.current?.setErrors({})
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('Email is required')
+            .email('Should be a valid email'),
+          password: Yup.string().min(8, "Password should be at least 8 characters long")
+        })
+
+        await schema.validate(userData, { abortEarly: false })
+
+        await signIn(userData)
       } catch (err) {
-        alert(err.message)
+
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err)
+          formRef.current?.setErrors(errors)
+        }
+        alert('Authentication error! Check your credentials')
       }
     },
-    []
+    [signIn]
   )
 
   return (

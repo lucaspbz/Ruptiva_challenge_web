@@ -19,7 +19,7 @@ const Input: React.FC<IInputProps> = ({ name, ...rest }) => {
     })
   }, [fieldName, registerField])
 
-  return <CustomInput ref={inputRef} defaultValue={defaultValue} {...rest} />
+  return <CustomInput ref={inputRef} isErrored={!!error} defaultValue={defaultValue} {...rest} />
 }
 
 export default Input

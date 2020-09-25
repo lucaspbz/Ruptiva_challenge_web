@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Form as Unform } from '@unform/web'
 
 export const Container = styled.div`
   height: 100vh;
@@ -7,7 +8,7 @@ export const Container = styled.div`
   justify-content: center;
 `
 
-export const Form = styled.form`
+export const Form = styled(Unform)`
   background-color: #fff;
   padding: 24px;
   max-width: 500px;
