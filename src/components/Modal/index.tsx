@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
+import { ClipLoader } from "react-spinners";
 
 import githubApi from '../../services/githubApi';
 
@@ -35,16 +36,18 @@ interface IIssue {
 const Modal: React.FC<IModalProps> = ({ repositoryName, modalIsOpen, closeModal }) => {
   const [repository, setRepository] = useState<IRepository | null>(null)
   const [issues, setIssues] = useState<IIssue[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
 
-    githubApi.get(`/repos/${repositoryName}`).then((response) => {
-      setRepository(response.data);
-    });
-    githubApi.get(`/repos/${repositoryName}/issues`).then((response) => {
-      setIssues(response.data.slice(0, 4));
-    });
+    const repoPromise = githubApi.get(`/repos/${repositoryName}`);
+    const issuesPromise = githubApi.get(`/repos/${repositoryName}/issues`);
 
+    Promise.all([repoPromise, issuesPromise]).then(([repoResponse, issuesResponse]) => {
+      setIsLoading(false);
+      setRepository(repoResponse.data);
+      setIssues(issuesResponse.data.slice(0, 4));
+    })
   }, [repositoryName,]);
 
 
@@ -55,6 +58,11 @@ const Modal: React.FC<IModalProps> = ({ repositoryName, modalIsOpen, closeModal 
       contentLabel="Example Modal"
       ariaHideApp={false}
     >
+
+      {isLoading && (
+        <ClipLoader />
+      )}
+
       {repository && (
         <RepositoryInfo>
           <header>
